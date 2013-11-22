@@ -146,10 +146,10 @@ var updateFounderList = function(cb){
   });
 }
 
+app.listen(process.env.PORT, function() {
+  console.log('Listening on port: '+process.env.PORT);
+});
+
 setTimeout(updateFounderList, 5*60000);
 
-updateFounderList(function() {
-  app.listen(process.env.PORT, function() {
-    console.log('Listening on port: '+process.env.PORT);
-  });
-});
+updateFounderList();
