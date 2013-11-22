@@ -7,7 +7,36 @@ var express = require('express')
   , _ = require('lodash');
 
 var startupSlugs = [
-  'popbasic'
+  'goods-platform',
+  'carreira-beauty',
+  'platejoy',
+  'anyadir-education',
+  'btcjam',
+  'popbasic',
+  'sales-beach',
+  'shopeando',
+  'builk',
+  'wishplz',
+  'cityblis-2',
+  'bounty-hunter',
+  'partender',
+  'equityzen',
+  'ubiome',
+  'maillift',
+  'silverpush',
+  'realtyshares',
+  'adespresso',
+  'sidelines',
+  'buzzstarter',
+  'viralgains',
+  '3sourcing',
+  'populr-me',
+  'olset',
+  'zboard',
+  'weplann',
+  'launchtrack',
+  'grata',
+  'shopseen'
 ]
 
 var getStartupInfo = function(slug, cb) {
@@ -98,10 +127,18 @@ var updateFounderList = function(cb){
     }
 
     founders = _.map(founderList, function(founder) {
-      return _.omit(founder, 'startup')
+      var data = _.omit(founder, 'startup');
+      data.startup = founder.startup.id;
+      return data;
     });
-    
-    startups = _.pluck(founderList, 'startup')
+
+    var massStartupList = _.pluck(founderList, 'startup');
+
+    startups = _.map(_.uniq(_.pluck(founders, 'startup')), function(startupId) {
+      return _.find(massStartupList, function(startup) {
+        return startup.id === startupId;
+      });
+    });
 
     if (typeof cb !== 'undefined') {
       cb();

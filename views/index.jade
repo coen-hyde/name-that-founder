@@ -6,10 +6,20 @@ html
     script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.2/js/bootstrap.min.js')
     script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.3.0/lodash.compat.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/SoundJS/0.5.0/soundjs.min.js')
+    script(src='/main.js')
     script.
       var founders = !{founders}
       var startups = !{startups}
+
+      start(founders, startups);
+
   body
     .container
-      h1 Name that Founder
-      h2 500 Startups Batch 007
+      .hat
+        img(src="/logo.png", height="75px")
+        h1 Name that Founder
+      #founder
+      #question
+        h2 Which startup does this founder belong to?
+      #answerlist
